@@ -1,17 +1,15 @@
 export interface PersonalData {
+    id: number;
     name: string;
     backImage: string;
     image: string;
     position: string;
-    company: {
-      name: string;
-      img: string;
-      url: string; 
-    },
-    school: {
-      name: string;
-      img: string;
-      url: string;
-    },
+    companyName: string;
+    companyImg: string;
+    companyUrl: string;
+    schoolName: string;
+    schoolImg: string;
+    schoolUrl: string;
     ubication: string;
+    about: string;
 }

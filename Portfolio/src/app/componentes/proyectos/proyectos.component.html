@@ -6,16 +6,12 @@
     </div>
     <div class="achivements">
       <ol class="items-list">
-        <li>
-          <h3>e-Farmacia</h3>
+        <li *ngFor="let project of proyectoList">
+          <h3>{{ project.name }}</h3>
           <div>
-            Detalle de lo desarrollado
-          </div>
-        </li>
-        <li>
-          <h3>Portfolio web</h3>
-          <div>
-            Detalle de lo desarrollado
+            <small class="description">
+              {{ project.details }}
+          </small>
           </div>
         </li>
       </ol>

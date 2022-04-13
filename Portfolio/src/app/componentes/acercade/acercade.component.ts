@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { PersonalData } from 'src/app/data/PersonalData';
+import { PorfolioService } from 'src/app/servicios/porfolio.service';
 
 @Component({
   selector: 'app-acercade',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./acercade.component.css']
 })
 export class AcercadeComponent implements OnInit {
+  personal: PersonalData[] = []
+  @Output() onAcercade: EventEmitter<PersonalData> = new EventEmitter;
 
-  constructor() { }
+  constructor(private porfolioService: PorfolioService) { }
 
   ngOnInit(): void {
+    this.porfolioService.obtenerDatosHeader().subscribe(
+      (data) => {
+        this.personal = data;
+      }
+    );
   }
-
 }

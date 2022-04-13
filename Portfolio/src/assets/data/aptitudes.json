@@ -1,0 +1,32 @@
+{
+    "aptitudes": [
+    {
+      "name": "Resolución de problemas",
+      "progress": 85,
+      "confirms": 2,
+      "confirmsNames": [
+        {
+          "name": "Nikolai Emmanuel Jablonski"
+        },
+        {
+          "name": "Nikolai 2 Emmanuel Jablonski"
+        }
+      ]
+    },
+    {
+      "name": "Diseño de Sistemas",
+      "progress": 45,
+      "confirms": 3,
+      "confirmsNames": [
+        {
+          "name": "Nikolai Emmanuel Bayro Jablonski"
+        },
+        {
+          "name": "Nikolai 2 Emmanuel Bayro Jablonski"
+        },
+        {
+          "name": "Nikolai 3 Emmanuel Bayro Jablonski"
+        }
+      ]
+    }]
+}

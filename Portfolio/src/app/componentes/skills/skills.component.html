@@ -5,27 +5,15 @@
       </div>
     </div>
     <ol class="items-list">
-      <li>
+      <li *ngFor="let skill of skills">
         <div class="aptitude-info">
           <a href="#">
-            <p><span>Resolución de problemas</span> - 2</p>
+            <p><span>{{ skill.name }}</span> - {{ skill.confirms }}</p>
             <div class="progress">
-              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 75%"
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width:{{skill.progress}}%"
                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <p><span>Nikolai Emmanuel Bayro Jablonski y 2</span> contacto han validado esta aptitud.</p>
-          </a>
-        </div>
-      </li>
-
-      <li>
-        <div class="aptitude-info">
-          <a href="#">
-            <p><span>Diseño de sistemas</span></p>
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 15%"
-                aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+            <p><span>{{ skill.confirmsNames[0].name }} y {{ skill.confirmsNames.length-1 }}</span> contacto han validado esta aptitud.</p>
           </a>
         </div>
       </li>

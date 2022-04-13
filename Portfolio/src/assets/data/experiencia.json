@@ -1,0 +1,14 @@
+{
+    "experience": [
+    {
+      "position": "Backend Developer",
+      "company": "Pixar",
+      "img": "https://free-images.com/sm/4fef/transweb_logo_png.jpg",
+      "mode": "Jornada parcial",
+      "start": "mar 2019",
+      "end": "actualidad",
+      "timeElapsed" : "2 años y 6 meses",
+      "ubicacion" : "Guadalajara y alrededores, México"
+    }
+  ]
+}
