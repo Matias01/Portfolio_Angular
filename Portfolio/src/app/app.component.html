@@ -1,20 +1,20 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">{{usuario}}</a>
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark" *ngIf="usuario[0]">
+  <a class="navbar-brand" routerLink="/home">{{ usuario[0].name }}</a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link waves-effect waves-light">
+        <a target="_blank" href="{{usuario[0].facebook}}" class="nav-link waves-effect waves-light">
           <i class="grey-text fab fa-facebook-square fa-2x"></i>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect waves-light">
+        <a target="_blank" href="{{usuario[0].instagram}}" class="nav-link waves-effect waves-light">
           <i class="grey-text fab fa-instagram fa-2x"></i>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect waves-light">
+        <a target="_blank" href="{{usuario[0].twitter}}" class="nav-link waves-effect waves-light">
           <i class="grey-text fab fa-twitter fa-2x"></i>
         </a>
       </li>
@@ -27,3 +27,5 @@
 </nav>
 
 <router-outlet></router-outlet>
+
+<app-footer></app-footer>

@@ -12,8 +12,28 @@ import { Proyecto } from '../data/Proyecto';
   providedIn: 'root'
 })
 export class PorfolioService {
+    // Actualización opcional para que funcione hacemos una interface de data.json
+    // y les ponemos ? para que pueda tomar valores nulos, luego definimos una variable y le asignamos el valor
+    // de res del subscribe y decimos que res sea del tipo de la interface Data y ahí podemos reemplazar los valores del json 
+    // en los html haciéndolos dinámicos Ver videos desde el 31 o antes
 
-  constructor(private http: HttpClient) { }
+  // Acá definimos la variable del tipo Data.
+  // info: Data = {};
+  
+  constructor(private http: HttpClient) { 
+
+
+    // this.cargarInfo();
+    
+  }
+
+    // private cargarInfo() {
+    //    this.http.get('assets/data/data.json')
+    //        .subscribe( (res: Data) => {
+    //          this.info = res;
+    //          console.log(res);
+    //        });
+    // }
 
   // Métodos header y About
   obtenerDatosHeader(): Observable<PersonalData[]> {

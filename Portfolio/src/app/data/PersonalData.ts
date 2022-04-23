@@ -4,12 +4,19 @@ export interface PersonalData {
     backImage: string;
     image: string;
     position: string;
-    companyName: string;
-    companyImg: string;
-    companyUrl: string;
-    schoolName: string;
-    schoolImg: string;
-    schoolUrl: string;
+    company: {
+        name: string;
+        img: string;
+        url: string;
+    };
+    school: {
+        name: string;
+        img: string;
+        url: string;
+    };
+    facebook: string;
+    twitter: string;
+    instagram: string;
     ubication: string;
     about: string;
 }

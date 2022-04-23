@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { PersonalData } from './data/PersonalData';
+import { PorfolioService } from './servicios/porfolio.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title:string = 'portfolio-web';
-  usuario: string = "Manuel Sadosky";
+  usuario: PersonalData[] = [];
+  @Output() onUser: EventEmitter<PersonalData> = new EventEmitter;
+
+  constructor(private porfolioService: PorfolioService) { }
+
+  ngOnInit(): void {
+    this.porfolioService.obtenerDatosHeader().subscribe(
+      (data: PersonalData[]) => {
+        this.usuario = data;
+      }
+    );
+  }
 }

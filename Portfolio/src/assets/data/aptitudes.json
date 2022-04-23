@@ -1,6 +1,7 @@
 {
     "aptitudes": [
     {
+      "id" : 1,
       "name": "Resolución de problemas",
       "progress": 85,
       "confirms": 2,
@@ -14,6 +15,7 @@
       ]
     },
     {
+      "id" : 2,
       "name": "Diseño de Sistemas",
       "progress": 45,
       "confirms": 3,

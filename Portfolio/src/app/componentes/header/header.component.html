@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="personal[0]">
     <div class="card mat-card" id="first-card">
       <div id="profile-background"><img id="info-back-img"
           [src]="personal[0].backImage">
@@ -14,7 +14,7 @@
         <div id="info-data">
           <div>
             <h1 id="info-name"> {{personal[0].name}} </h1>
-            <div><span id="info-position">{{ personal[0].position }}</span> en <span id="info-company">{{ personal[0].companyName }}</span></div>
+            <div><span id="info-position">{{ personal[0].position }}</span> en <span id="info-company">{{ personal[0].company.name }}</span></div>
             <div id="info-contact">
               <span id="info-ubication">{{personal[0].ubication}} </span>
               <span><a href="#">Información de contacto</a></span>
@@ -23,12 +23,12 @@
           <ul id="info-details">
             <li><a href="#">
                 <img id="info-company-img"
-                  [src]="personal[0].companyImg">
-                <h2 id="info-company-name">{{personal[0].companyName}}</h2>
+                  [src]="personal[0].company.img">
+                <h2 id="info-company-name">{{personal[0].company.name}}</h2>
               </a></li>
             <li><a href="#">
-                <img id="info-school-img" [src]="personal[0].schoolImg">
-                <h2 id="info-school-name">{{ personal[0].schoolName }}</h2>
+                <img id="info-school-img" [src]="personal[0].school.img">
+                <h2 id="info-school-name">{{ personal[0].school.name }}</h2>
               </a></li>
           </ul>
         </div>
