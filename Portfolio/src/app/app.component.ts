@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { PersonalData } from './data/PersonalData';
-import { PorfolioService } from './servicios/porfolio.service';
+import { Component } from '@angular/core';
+import { AuthService } from './servicios/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,17 +8,14 @@ import { PorfolioService } from './servicios/porfolio.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title:string = 'portfolio-web';
-  usuario: PersonalData[] = [];
-  @Output() onUser: EventEmitter<PersonalData> = new EventEmitter;
+  title = 'portfolio-web';
+  isUserLogged: boolean = false;
+  
 
-  constructor(private porfolioService: PorfolioService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.porfolioService.obtenerDatosHeader().subscribe(
-      (data: PersonalData[]) => {
-        this.usuario = data;
-      }
-    );
+    this.isUserLogged = this.authService.isUserLogged();  
+    
   }
 }

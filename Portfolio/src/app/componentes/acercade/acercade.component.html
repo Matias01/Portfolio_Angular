@@ -1,10 +1,40 @@
-<div class="card mat-card" *ngIf="personal[0]">
-    <div class="card-titles">
-      <h2>Acerca de</h2>
-      <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen" onclick="showEditAboutModal()"></i></a>
+<div class="card mat-card" *ngIf="personalData[0]">
+<!-- Modal -->
+<div class="modal fade" id="personalForm" tabindex="-1" aria-labelledby="personalFormLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="personalFormLabel">Educacion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+          <input type="hidden" name="id" formControlName="id">
+
+          <div class="row mb-3">
+            <label for="about" class="col-sm-2 col-form-label">About</label>
+            <div class="col-sm-10">
+              <input type="text" name="about" formControlName="about" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="button" class="btn btn-secondary me-4" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
       </div>
     </div>
-    <div id="about">
-      {{ personal[0].about }}
+  </div>
+</div>
+
+  <div class="card-titles">
+    <h2>Acerca de</h2>
+    <div *ngIf="isUserLogged" class="btn-edit">
+      <button class="btn-right" data-bs-toggle="modal" data-bs-target="#educationForm" (click)="onEditPersonalData(0)"><i class="fa fa-pen"></i></button>
     </div>
   </div>
+  <div id="about">
+    {{ personalData[0].about }}
+  </div>
+</div>

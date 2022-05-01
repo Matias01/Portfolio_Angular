@@ -7,72 +7,98 @@ import { PersonalData } from '../data/PersonalData';
 import { Experiencia } from '../data/Experiencia';
 import { Skills } from '../data/Skills';
 import { Proyecto } from '../data/Proyecto';
+import { config } from '../data/config/Config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PorfolioService {
-    // Actualización opcional para que funcione hacemos una interface de data.json
-    // y les ponemos ? para que pueda tomar valores nulos, luego definimos una variable y le asignamos el valor
-    // de res del subscribe y decimos que res sea del tipo de la interface Data y ahí podemos reemplazar los valores del json 
-    // en los html haciéndolos dinámicos Ver videos desde el 31 o antes
-
-  // Acá definimos la variable del tipo Data.
-  // info: Data = {};
   
-  constructor(private http: HttpClient) { 
-
-
-    // this.cargarInfo();
-    
-  }
-
-    // private cargarInfo() {
-    //    this.http.get('assets/data/data.json')
-    //        .subscribe( (res: Data) => {
-    //          this.info = res;
-    //          console.log(res);
-    //        });
-    // }
+  constructor(private http: HttpClient) {  }
 
   // Métodos header y About
   obtenerDatosHeader(): Observable<PersonalData[]> {
-    return this.http.get<any>("./assets/data/personal-data.json").pipe(
-      map(res => res.personalData)
-    );
+    return this.http.get<any>(config.baseUrl + "personalData");
+  }
+
+  guardarNuevaHeader(personalData:PersonalData): Observable<PersonalData> {
+    return this.http.post<any>(config.baseUrl + "personalData/create", personalData);
+  }
+
+  modificarHeader(personalData:PersonalData): Observable<any> {
+    return this.http.put<any>(config.baseUrl + "personalData/update", personalData);
+  }
+
+  borrarHeader(id: number): Observable<any> {
+    return this.http.delete<any>(config.baseUrl + "personalData/" + id);
   }
 
   // Métodos Experiencia
   obtenerDatosExperiencia(): Observable<Experiencia[]> {
-    return this.http.get<any>("./assets/data/experiencia.json").pipe(
-      map(res => res.experience)
-    );
+    return this.http.get<any>(config.baseUrl + "experiencia");
+  }
+
+  guardarNuevaExperiencia(experiencia:Experiencia): Observable<Experiencia> {
+    return this.http.post<any>(config.baseUrl + "experiencia/create", experiencia);
+  }
+
+  modificarExperiencia(experiencia:Experiencia): Observable<any> {
+    return this.http.put<any>(config.baseUrl + "experiencia/update", experiencia);
+  }
+
+  borrarExperiencia(id: number): Observable<any> {
+    return this.http.delete<any>(config.baseUrl + "experiencia/" + id);
   }
 
   // Métodos educación
   obtenerDatosEducacion(): Observable<Educacion[]> {
-    return this.http.get<any>("./assets/data/educacion.json").pipe(
-      map(res => res.education)
-    );
+    return this.http.get<any>(config.baseUrl + "educacion");
   }
 
-  deleteEdu(educacion: Educacion): Observable<Educacion>{
-    // lo selecciona, pero no lo borra, sino que lo oculta
-    return this.http.get<any>("./assets/data/educacion.json").pipe(map(res => res.education.id));
-    // return this.http.delete<Educacion>();
+  guardarNuevaEducacion(educacion:Educacion): Observable<Educacion> {
+    return this.http.post<any>(config.baseUrl + "educacion/create", educacion);
+  }
+
+  modificarEducacion(educacion: Educacion): Observable<any> {
+    return this.http.put<any>(config.baseUrl + "educacion/update", educacion);
+  }
+
+  borrarEducacion(id: number): Observable<any> {
+    return this.http.delete<any>(config.baseUrl + "educacion/" + id);
   }
 
   // Métodos skills
-  obtenerDatosSkills(): Observable<Skills[]> {
-    return this.http.get<any>("./assets/data/aptitudes.json").pipe(
-      map(res => res.aptitudes)
-    );
+  obtenerDatosSkill(): Observable<Skills[]> {
+    return this.http.get<any>(config.baseUrl + "skill");
+  }
+
+  guardarNuevaSkill(skill:Skills): Observable<Skills> {
+    return this.http.post<any>(config.baseUrl + "skill/create", skill);
+  }
+
+  modificarSkill(skill: Skills): Observable<any> {
+    return this.http.put<any>(config.baseUrl + "skill/update", skill);
+  }
+
+  borrarSkill(id: number): Observable<any> {
+    return this.http.delete<any>(config.baseUrl + "skill/" + id);
   }
 
   // Métodos proyectos
   obtenerDatosProyecto(): Observable<Proyecto[]> {
-    return this.http.get<any>("./assets/data/proyecto.json").pipe(
-      map(res => res.achivements)
-    );
+    return this.http.get<any>(config.baseUrl + "proyecto");
   }
+
+  guardarNuevaProyecto(proyecto:Proyecto): Observable<Proyecto> {
+    return this.http.post<any>(config.baseUrl + "proyecto/create", proyecto);
+  }
+
+  modificarProyecto(proyecto: Proyecto): Observable<any> {
+    return this.http.put<any>(config.baseUrl + "proyecto/update", proyecto);
+  }
+
+  borrarProyecto(id: number): Observable<any> {
+    return this.http.delete<any>(config.baseUrl + "proyecto/" + id);
+  }
+
 }
