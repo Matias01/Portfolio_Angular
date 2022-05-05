@@ -39,22 +39,24 @@
   <div class="card-titles">
     <h2>Proyectos</h2>
     <div *ngIf="isUserLogged" class="btn-edit">
-      <button class="btn-right" data-bs-toggle="modal" data-bs-target="#proyectoForm" (click)="onNewProyecto()"><i class="fa fa-plus" ></i></button>
+      <button class="btn btn-right" data-bs-toggle="modal" data-bs-target="#proyectoForm" (click)="onNewProyecto()"><i class="fa fa-plus" ></i></button>
     </div>
   </div>
   <div class="achivements">
     <ol class="items-list">
       <li *ngFor="let project of proyectoList; let i = index">
-        <h3>{{ project.name }}</h3>
-        <div>
-          <small class="description">
-            {{ project.details }}
-        </small>
+        <div class="aptitude-info">
+          <h3>{{ project.name }}</h3>
+          <div>
+            <small class="description">
+              {{ project.details }}
+          </small>
+          </div>
         </div>
         <div class="data-control">
           <div *ngIf="isUserLogged" class="btn-edit">
-              <button class="btn-right" data-bs-toggle="modal" data-bs-target="#proyectoForm" (click)="onEditProyecto(i)"><i class="fa fa-pen"></i></button>
-              <button class="btn-right" data-bs-toggle="modal" data-bs-target="#proyectoForm" (click)="onDeleteProyecto(i)"><i class="fa fa-trash"></i></button>
+              <button class="btn btn-right" data-bs-toggle="modal" data-bs-target="#proyectoForm" (click)="onEditProyecto(i)"><i class="fa fa-pen"></i></button>
+              <button class="btn btn-right" data-bs-toggle="modal" data-bs-target="#proyectoForm" (click)="onDeleteProyecto(i)"><i class="fa fa-trash"></i></button>
           </div>
       </div>
       </li>

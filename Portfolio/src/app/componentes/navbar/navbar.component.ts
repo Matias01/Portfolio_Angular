@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { PersonalData } from 'src/app/data/PersonalData';
 import { PorfolioService } from 'src/app/servicios/porfolio.service';
@@ -10,17 +10,21 @@ import { PorfolioService } from 'src/app/servicios/porfolio.service';
 })
 export class NavbarComponent implements OnInit {
   isUserLogged: boolean = false;
-  usuario: PersonalData[] = [];
-  @Output() onUser: EventEmitter<PersonalData> = new EventEmitter;
+  personalData: PersonalData[] = [];
 
   constructor(private porfolioService: PorfolioService,
-    private authService: AuthService) { }
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.isUserLogged = this.authService.isUserLogged();
+    
+    this.reloadData();
+  }
+
+  private reloadData() {
     this.porfolioService.obtenerDatosHeader().subscribe(
-      (data: PersonalData[]) => {
-        this.usuario = data;
+      (data) => {
+        this.personalData = data;
       }
     );
   }

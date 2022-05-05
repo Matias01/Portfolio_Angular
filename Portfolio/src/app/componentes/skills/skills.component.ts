@@ -23,8 +23,8 @@ export class SkillsComponent implements OnInit {
           id: [''],
           name: ['', [Validators.required]],
           progress: ['', [Validators.required]],
-          confirms: ['', [Validators.required]],
-          confirmsNames: ['', [Validators.required]],
+          confirms: [''],
+          confirmsNames: [''],
         })
       }
 
@@ -47,8 +47,8 @@ export class SkillsComponent implements OnInit {
       id: '',
       name: '',
       progress: '',
-      confirms: '',
-      confirmsNames: '',
+      confirms: 0,
+      confirmsNames: null,
     })
   }
 
@@ -56,6 +56,9 @@ export class SkillsComponent implements OnInit {
     this.skillForm.setValue({
       id: skill.id,
       name: skill.name,
+      progress: skill.progress,
+      confirms: skill.confirms,
+      confirmsNames: skill.confirmsNames
     })
   }
 

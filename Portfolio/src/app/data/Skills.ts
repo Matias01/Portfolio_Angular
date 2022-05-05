@@ -4,8 +4,6 @@ export interface Skills {
     progress: number;
     confirms: number;
     confirmsNames: [
-    {
-        name: string;
-    }
+        name: string
     ]
 }

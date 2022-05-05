@@ -56,8 +56,8 @@ export class AcercadeComponent implements OnInit {
       backImage: '',
       image: '',
       position: '',
-      company: {},
-      school: {},
+      company: '',
+      school: '',
       facebook: '',
       twitter: '',
       instagram: '',
@@ -100,8 +100,8 @@ export class AcercadeComponent implements OnInit {
     }
   }
 
-  onEditPersonalData(index: number) {
-    let personal: PersonalData = this.personalData[index];
+  onEditPersonalData() {
+    let personal: PersonalData = this.personalData[0];
     this.loadForm(personal);
   }
 

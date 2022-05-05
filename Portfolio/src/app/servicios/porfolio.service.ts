@@ -8,6 +8,8 @@ import { Experiencia } from '../data/Experiencia';
 import { Skills } from '../data/Skills';
 import { Proyecto } from '../data/Proyecto';
 import { config } from '../data/config/Config';
+import { Company } from '../data/Company';
+import { School } from '../data/School';
 
 @Injectable({
   providedIn: 'root'
@@ -99,6 +101,39 @@ export class PorfolioService {
 
   borrarProyecto(id: number): Observable<any> {
     return this.http.delete<any>(config.baseUrl + "proyecto/" + id);
+  }
+
+  // Companys & Schools
+  obtenerCompany():Observable<Company[]> {
+    return this.http.get<any>(config.baseUrl + "company");
+  }
+
+  guardarNuevaCompany(company:Company): Observable<Company> {
+    return this.http.post<any>(config.baseUrl + "company/create", company);
+  }
+
+  modificarCompany(company: Company): Observable<any> {
+    return this.http.put<any>(config.baseUrl + "company/update", company);
+  }
+
+  borrarCompany(id: number): Observable<any> {
+    return this.http.delete<any>(config.baseUrl + "company/" + id);
+  }
+
+  obtenerSchool():Observable<School[]> {
+    return this.http.get<any>(config.baseUrl + "school");
+  }
+
+  guardarNuevaSchool(school:Proyecto): Observable<School> {
+    return this.http.post<any>(config.baseUrl + "school/create", school);
+  }
+
+  modificarSchool(school: Proyecto): Observable<any> {
+    return this.http.put<any>(config.baseUrl + "school/update", school);
+  }
+
+  borrarSchool(id: number): Observable<any> {
+    return this.http.delete<any>(config.baseUrl + "school/" + id);
   }
 
 }

@@ -106,6 +106,13 @@ ul.items-list li div.data-container a div.list-info p {
 ol.items-list {
     list-style: none inside;
 }
+ ol.items-list li {
+    display: flex;
+    margin: 10px 0;
+}
+ ol.items-list li div.aptitude-info {
+    flex-grow: 1;
+}
 ol.items-list li div.aptitude-info a {
     text-decoration: none;
     color: grey;

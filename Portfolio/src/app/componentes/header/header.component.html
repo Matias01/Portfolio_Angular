@@ -1,43 +1,177 @@
-<header *ngIf="personal[0]">
-    <div class="card mat-card" id="first-card">
-      <div id="profile-background"><img id="info-back-img"
-          [src]="personal[0].backImage">
-      </div>
-      <div id="info" style="padding: 16px">
-        <div id="info-img">
-          <img id="info-user-img" class="profile-image"
-            [src]="personal[0].image">
-          <div class="btn-edit"><a  class="btn-right"><i class="fa fa-pen"
-                (click)="showEditProfileModal()"></i></a>
-          </div>
+<nav *ngIf="personalData[0]" class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/home">{{ personalData[0].name }}</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a target="_blank" href="{{personalData[0].facebook}}" class="nav-link waves-effect waves-light">
+          <i class="grey-text fab fa-facebook-square fa-2x"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a target="_blank" href="{{personalData[0].instagram}}" class="nav-link waves-effect waves-light">
+          <i class="grey-text fab fa-instagram fa-2x"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a target="_blank" href="{{personalData[0].twitter}}" class="nav-link waves-effect waves-light">
+          <i class="grey-text fab fa-twitter fa-2x"></i>
+        </a>
+      </li>
+    </ul>
+    <button *ngIf="!isUserLogged" class="btn btn-outline-success my-2 my-sm-0" routerLink="/login">Login</button>
+    <button *ngIf="isUserLogged" class="btn btn-outline-success my-2 my-sm-0" routerLink="/logout" (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+
+<header *ngIf="personalData[0]">
+
+  <!-- Modal -->
+  <div class="modal fade" id="personalDataForm" tabindex="-1" aria-labelledby="personalDataFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="personalDataFormLabel">Personal Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div id="info-data">
-          <div>
-            <h1 id="info-name"> {{personal[0].name}} </h1>
-            <div><span id="info-position">{{ personal[0].position }}</span> en <span id="info-company">{{ personal[0].company.name }}</span></div>
-            <div id="info-contact">
-              <span id="info-ubication">{{personal[0].ubication}} </span>
-              <span><a href="#">Información de contacto</a></span>
+        <div class="modal-body">
+          <form [formGroup]="personalDataForm" (ngSubmit)="onSubmit()">
+            <input type="hidden" name="id" formControlName="id">
+
+            <div class="row mb-3">
+              <label for="name" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" name="name" formControlName="name" class="form-control" required>
+              </div>
             </div>
-          </div>
-          <ul id="info-details">
-            <li><a href="#">
-                <img id="info-company-img"
-                  [src]="personal[0].company.img">
-                <h2 id="info-company-name">{{personal[0].company.name}}</h2>
-              </a></li>
-            <li><a href="#">
-                <img id="info-school-img" [src]="personal[0].school.img">
-                <h2 id="info-school-name">{{ personal[0].school.name }}</h2>
-              </a></li>
-          </ul>
-        </div>
-        <div id="info-actions">
-          <button type="button" class="btn btn-primary">Tengo interés en</button>
-          <button type="button" class="btn btn-light">Añadir Sección</button>
-          <button type="button" class="btn btn-light">Más</button>
+
+            <div class="row mb-3">
+              <label for="backImage" class="col-sm-2 col-form-label">BackImage</label>
+              <div class="col-sm-10">
+                <input type="text" name="backImage" formControlName="backImage" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <label for="image" class="col-sm-2 col-form-label">Image</label>
+              <div class="col-sm-10">
+                <input type="text" name="image" formControlName="image" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <label for="position" class="col-sm-2 col-form-label">Position</label>
+              <div class="col-sm-10">
+                <input type="text" name="position" formControlName="position" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <label for="company" class="col-sm-2 col-form-label">Company</label>
+              <div class="col-sm-10">
+                <select formControlName="company">
+                  <option [ngValue]="null" disabled>Select Company</option>
+                  <option *ngFor="let company of companys" [ngValue]="company">{{company.name}}</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <label for="school" class="col-sm-2 col-form-label">School</label>
+              <div class="col-sm-10">
+                <select formControlName="school">
+                  <option [ngValue]="null" disabled>Select School</option>
+                  <option *ngFor="let school of schools" [ngValue]="school">{{school.name}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="facebook" class="col-sm-2 col-form-label">Facebook</label>
+              <div class="col-sm-10">
+                <input type="text" name="facebook" formControlName="facebook" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <label for="twitter" class="col-sm-2 col-form-label">Twitter</label>
+              <div class="col-sm-10">
+                <input type="text" name="twitter" formControlName="twitter" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <label for="instagram" class="col-sm-2 col-form-label">Instagram</label>
+              <div class="col-sm-10">
+                <input type="text" name="instagram" formControlName="instagram" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <label for="ubication" class="col-sm-2 col-form-label">Ubication</label>
+              <div class="col-sm-10">
+                <input type="text" name="ubication" formControlName="ubication" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="button" class="btn btn-secondary me-4" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
-  </header>
+
+
+
+  <div class="card mat-card" id="first-card">
+    <div id="profile-background"><img id="info-back-img"
+        [src]="personalData[0].backImage">
+    </div>
+    <div id="info" style="padding: 16px">
+      <div id="info-img">
+        <img id="info-user-img" class="profile-image"
+          [src]="personalData[0].image">
+        <div *ngIf="isUserLogged" class="btn-edit">
+          <button class="btn btn-right" data-bs-toggle="modal" data-bs-target="#personalDataForm" (click)="onEditProfile()">
+          <i class="fa fa-pen"></i></button>
+        </div>
+      </div>
+      <div id="info-data">
+        <div>
+          <h1 id="info-name"> {{personalData[0].name}} </h1>
+          <div><span id="info-position">{{ personalData[0].position }}</span> en <span id="info-company">{{ personalData[0].company.name }}</span></div>
+          <div id="info-contact">
+            <span id="info-ubication">{{personalData[0].ubication}} </span>
+            <!-- <span><a href="#">Información de contacto</a></span> -->
+          </div>
+        </div>
+        <ul id="info-details">
+          <li><a href="#">
+              <img id="info-company-img"
+                [src]="personalData[0].company.img">
+              <h2 id="info-company-name">{{personalData[0].company.name}}</h2>
+            </a></li>
+          <li><a href="#">
+              <img id="info-school-img" 
+                [src]="personalData[0].school.img">
+              <h2 id="info-school-name">{{ personalData[0].school.name }}</h2>
+            </a></li>
+        </ul>
+      </div>
+      <!-- <div id="info-actions">
+        <button type="button" class="btn btn-primary">Tengo interés en</button>
+        <button type="button" class="btn btn-light">Añadir Sección</button>
+        <button type="button" class="btn btn-light">Más</button>
+      </div> -->
+    </div>
+  </div>
+
+</header>
