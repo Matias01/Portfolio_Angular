@@ -53,6 +53,7 @@
               <label for="backImage" class="col-sm-2 col-form-label">BackImage</label>
               <div class="col-sm-10">
                 <input type="text" name="backImage" formControlName="backImage" class="form-control" required>
+                <small>Links demasiado largos no son permitidos</small>
               </div>
             </div>
             
@@ -60,6 +61,7 @@
               <label for="image" class="col-sm-2 col-form-label">Image</label>
               <div class="col-sm-10">
                 <input type="text" name="image" formControlName="image" class="form-control" required>
+                <small>Links demasiado largos no son permitidos</small>
               </div>
             </div>
             
@@ -128,8 +130,91 @@
     </div>
   </div>
 
+<!-- Modal Company-->
+<div class="modal fade" id="companyForm" tabindex="-1" aria-labelledby="companyFormLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="companyFormLabel">Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="companyForm" (ngSubmit)="onSubmitCompany()">
+          <input type="hidden" name="id" formControlName="id">
 
+          <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" formControlName="name" class="form-control" required>
+            </div>
+          </div>
 
+          <div class="row mb-3">
+            <label for="img" class="col-sm-2 col-form-label">Image</label>
+            <div class="col-sm-10">
+              <input type="text" name="img" formControlName="img" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="url" class="col-sm-2 col-form-label">Url</label>
+            <div class="col-sm-10">
+              <input type="text" name="url" formControlName="url" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <button type="button" class="btn btn-secondary me-4" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save company</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal School-->
+<div class="modal fade" id="schoolForm" tabindex="-1" aria-labelledby="schoolFormLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="schoolFormLabel">School</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="schoolForm" (ngSubmit)="onSubmitSchool()">
+          <input type="hidden" name="id" formControlName="id">
+
+          <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" formControlName="name" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="img" class="col-sm-2 col-form-label">Image</label>
+            <div class="col-sm-10">
+              <input type="text" name="img" formControlName="img" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="url" class="col-sm-2 col-form-label">Url</label>
+            <div class="col-sm-10">
+              <input type="text" name="url" formControlName="url" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <button type="button" class="btn btn-secondary me-4" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save school</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
   <div class="card mat-card" id="first-card">
     <div id="profile-background"><img id="info-back-img"
@@ -154,16 +239,22 @@
           </div>
         </div>
         <ul id="info-details">
-          <li><a href="#">
+          <li><a target="_blank" href="{{personalData[0].company.url}}">
               <img id="info-company-img"
                 [src]="personalData[0].company.img">
               <h2 id="info-company-name">{{personalData[0].company.name}}</h2>
-            </a></li>
-          <li><a href="#">
+            </a>
+            <div *ngIf="isUserLogged" class="btn-edit">
+              <button class="btn btn-right" data-bs-toggle="modal" data-bs-target="#companyForm" (click)="onNewCompany()"><i class="fa fa-plus"></i></button>
+            </div></li>
+          <li><a target="_blank" href="{{personalData[0].school.url}}">
               <img id="info-school-img" 
                 [src]="personalData[0].school.img">
               <h2 id="info-school-name">{{ personalData[0].school.name }}</h2>
-            </a></li>
+            </a>
+            <div *ngIf="isUserLogged" class="btn-edit">
+              <button class="btn btn-right" data-bs-toggle="modal" data-bs-target="#schoolForm" (click)="onNewSchool()"><i class="fa fa-plus"></i></button>
+            </div></li>
         </ul>
       </div>
       <!-- <div id="info-actions">

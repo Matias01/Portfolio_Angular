@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit {
   isUserLogged: Boolean = false;
 
   personalDataForm: FormGroup;
+  companyForm: FormGroup;
+  schoolForm: FormGroup;
 
   constructor(
     private porfolioService: PorfolioService,
@@ -36,7 +38,19 @@ export class HeaderComponent implements OnInit {
           instagram: ['', [Validators.required]],
           ubication: ['', [Validators.required]],
           about: ['', [Validators.required]],
-        })
+        });
+      this.companyForm = this.formBuilder.group({
+          id: [''],
+          name: ['', [Validators.required]],
+          img: ['', [Validators.required]],
+          url: ['', [Validators.required]]
+        });
+        this.schoolForm = this.formBuilder.group({
+          id: [''],
+          name: ['', [Validators.required]],
+          img: ['', [Validators.required]],
+          url: ['', [Validators.required]]
+        });
       }
 
   ngOnInit(): void {
@@ -139,5 +153,65 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     this.isUserLogged = false;
     window.location.reload();
+  }
+
+  clearFormCompany(){
+    this.companyForm.setValue({
+      id: '',
+      name: '',
+      img: '',
+      url: ''
+    })
+  }
+
+  onSubmitCompany(){
+    let company: Company = this.companyForm.value;
+    if (this.companyForm.get('id')?.value == '') {
+      this.porfolioService.guardarNuevaCompany(company).subscribe(
+        (newCompany: Company) => {
+          this.companys.push(newCompany);
+        }
+      );
+    } else {
+      this.porfolioService.modificarCompany(company).subscribe(
+        () => {
+          this.reloadData();
+        }
+      )
+    }
+  }
+
+  onNewCompany(){
+    this.clearFormCompany();
+  }
+
+  clearFormSchool(){
+    this.schoolForm.setValue({
+      id: '',
+      name: '',
+      img: '',
+      url: ''
+    })
+  }
+
+  onSubmitSchool(){
+    let school: School = this.schoolForm.value;
+    if (this.schoolForm.get('id')?.value == '') {
+      this.porfolioService.guardarNuevaSchool(school).subscribe(
+        (newSchool: School) => {
+          this.schools.push(newSchool);
+        }
+      );
+    } else {
+      this.porfolioService.modificarCompany(school).subscribe(
+        () => {
+          this.reloadData();
+        }
+      )
+    }
+  }
+
+  onNewSchool(){
+    this.clearFormSchool();
   }
 }

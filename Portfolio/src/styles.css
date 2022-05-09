@@ -46,9 +46,16 @@ div#info-data h1 {
     word-break: break-word;
 }
 div#info-data ul#info-details {
-    width: 232px;
+    width: 320px;
     list-style: none;
     flex-shrink: 0;
+}
+div#info-data ul#info-details li {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px;
+    border: 1px solid rgb(236, 235, 235);
+    border-radius: 10px;
 }
 div#info-data ul#info-details li a {
     color: black;
@@ -65,6 +72,9 @@ div#info-data ul#info-details li a img {
     width: 32px;
     height: 32px;
     margin-right: 8px;
+    margin-left: 5px;
+    align-self: center;
+    vertical-align: baseline;
 }
 ul.items-list {
     list-style: none inside;
@@ -181,6 +191,8 @@ div#profile-background {
 }
 div#profile-background img {
     width: 100%;
+    height: 350px;
+    object-fit: cover;
     border-radius: 32px 32px 0 0;
 }
 .data-control{

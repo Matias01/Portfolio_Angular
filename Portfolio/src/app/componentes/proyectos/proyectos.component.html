@@ -4,7 +4,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="proyectoFormLabel">Proyectos</h5>
+          <h5 class="modal-title" id="proyectoFormLabel">Projects</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -56,7 +56,7 @@
         <div class="data-control">
           <div *ngIf="isUserLogged" class="btn-edit">
               <button class="btn btn-right" data-bs-toggle="modal" data-bs-target="#proyectoForm" (click)="onEditProyecto(i)"><i class="fa fa-pen"></i></button>
-              <button class="btn btn-right" data-bs-toggle="modal" data-bs-target="#proyectoForm" (click)="onDeleteProyecto(i)"><i class="fa fa-trash"></i></button>
+              <button class="btn btn-right" (click)="onDeleteProyecto(i)"><i class="fa fa-trash"></i></button>
           </div>
       </div>
       </li>

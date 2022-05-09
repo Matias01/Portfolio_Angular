@@ -124,11 +124,11 @@ export class PorfolioService {
     return this.http.get<any>(config.baseUrl + "school");
   }
 
-  guardarNuevaSchool(school:Proyecto): Observable<School> {
+  guardarNuevaSchool(school:School): Observable<School> {
     return this.http.post<any>(config.baseUrl + "school/create", school);
   }
 
-  modificarSchool(school: Proyecto): Observable<any> {
+  modificarSchool(school: School): Observable<any> {
     return this.http.put<any>(config.baseUrl + "school/update", school);
   }
 
