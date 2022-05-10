@@ -1,4 +1,4 @@
-<nav *ngIf="personalData[0]" class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+<nav  class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/home">{{ personalData[0].name }}</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
 </nav>
 
 
-<header *ngIf="personalData[0]">
+<header >
 
   <!-- Modal -->
   <div class="modal fade" id="personalDataForm" tabindex="-1" aria-labelledby="personalDataFormLabel" aria-hidden="true">
